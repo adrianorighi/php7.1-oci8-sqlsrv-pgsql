@@ -18,7 +18,7 @@ RUN chmod a+x /usr/bin/apache-run
 RUN apt-get update && apt-get install -y wget vim zip libfreetype6-dev libjpeg62-turbo-dev \
        libmcrypt-dev libpng-dev libssl-dev libaio1 git libcurl4-openssl-dev libxslt-dev \
        libldap2-dev libicu-dev libc-client-dev libkrb5-dev libsqlite3-dev libedit-dev libpq-dev libxrender1 libfontconfig1 \
-       unixodbc-dev
+       unixodbc-dev mssql-tools
 
 RUN a2enmod rewrite
 
@@ -54,10 +54,6 @@ RUN cd /opt/oci8 \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
-
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-RUN ACCEPT_EULA=Y apt-get install msodbcsql=13.1.9.0-1 mssql-tools=14.0.6.0-1 unixodbc-dev
 
 RUN pecl install sqlsrv \
     pdo_sqlsrv
