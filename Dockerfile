@@ -55,6 +55,10 @@ RUN cd /opt/oci8 \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN ACCEPT_EULA=Y apt-get install msodbcsql=13.1.9.0-1 mssql-tools=14.0.6.0-1 unixodbc-dev
+
 RUN pecl install sqlsrv \
     pdo_sqlsrv
 
