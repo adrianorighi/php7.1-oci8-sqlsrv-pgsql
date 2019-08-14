@@ -26,6 +26,9 @@ RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc
 RUN apt-get update && ACCEPT_EULA=Y apt-get install -y \
        mssql-tools unixodbc-dev
 
+RUN wget http://security.debian.org/debian-security/pool/updates/main/o/openssl1.0/libssl1.0.2_1.0.2s-1~deb9u1_amd64.deb \
+    && dpkg -i libssl1.0.2_1.0.2s-1~deb9u1_amd64.deb
+
 RUN a2enmod rewrite
 
 # Install PHP extensions
