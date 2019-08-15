@@ -23,7 +23,7 @@ if [[ $SESSION_HANDLER == true ]]; then
 fi
 
 usermod -u 1000 www-data \
-    && cd /var/www/html && composer install && rm -rf var/cache/* var/logs/* \
+    && cd /var/www/html && rm -rf var/cache/* var/logs/* \
 	&& mkdir -p /var/www/html/var/cache \
 	&& mkdir -p /var/www/html/var/logs \
 	&& mkdir -p /var/www/html/var/sessions \
